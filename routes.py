@@ -175,6 +175,7 @@ def update_task(id):
     }), 200
 
 
+
 # ---------------- DELETE TASK ----------------
 
 @routes.route("/tasks/<int:id>", methods=["DELETE"])
@@ -185,10 +186,7 @@ def delete_task(id):
 
     user = User.query.filter_by(email=current_email).first()
 
-    task = Task.query.filter_by(
-        id=id,
-        user_id=user.id
-    ).first()
+    task = Task.query.filter_by(id=id, user_id=user.id).first()
 
     if not task:
         return jsonify({"message": "Task not found"}), 404
